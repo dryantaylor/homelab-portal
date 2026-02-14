@@ -1,13 +1,13 @@
 from flask import Flask, render_template
-import json
+import yaml
 import argparse, sys
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    with open("services.json", 'r') as server_content:
-        return render_template('index.html', json= json.load(server_content))
+    with open("services.yaml", 'r') as server_content:
+        return render_template('index.html', yaml= yaml.safe_load(server_content))
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
@@ -28,5 +28,6 @@ if __name__ == '__main__':
         print("Invalid debug value. Please provide a boolean value (True/False) for debug.")
         sys.exit(1)
     app.run(host='0.0.0.0', port=port_val, debug=debug_val)
+
 
 

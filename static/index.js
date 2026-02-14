@@ -1,5 +1,4 @@
-
-var raw = $(document.currentScript).attr('data_json') || '';
+var raw = $(document.currentScript).attr('data_yaml') || '';
 var yamlDataObj = JSON.parse(raw.replace(/'/g, '"'));
 console.log(yamlDataObj);
 
@@ -123,3 +122,4 @@ function updateFilter(){
 
 $('#serverFilter').change(updateFilter);
 $('#categoryFilter').change(updateFilter);
+

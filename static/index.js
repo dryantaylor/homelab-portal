@@ -1,5 +1,5 @@
 
-var raw = $(document.currentScript).attr('data_yaml') || '';
+var raw = $(document.currentScript).attr('data_json') || '';
 var yamlDataObj = JSON.parse(raw.replace(/'/g, '"'));
 console.log(yamlDataObj);
 

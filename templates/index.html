@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Lab Portal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css"> 
+</head>
+<body>
+    <h1> Portal </h1>
+    <h2> Servers</h2>
+    <div id="servers" class="w3-row w3-row-padding" aria-label="Servers container"></div>
+    <h2> Services</h2>
+    <form>
+        <label for="serverFilter">Filter by server:</label>
+        <select id="serverFilter">
+            <option value="all">Show all</option>
+        </select>
+        <label for="categoryFilter">Filter by category:</label>
+        <select id="categoryFilter">
+            <option value="all">Show all</option>
+        </select>
+    </form>
+
+    <div id="services" class="w3-row w3-row-padding" aria-label="Services container"></div>
+    <script defer = "true" src="{{ url_for('static', filename='index.js') }}" data_yaml= "{{ yaml }}"></script>
+</body>
+</html>

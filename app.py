@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import yaml
 import argparse, sys
+import os
 
 app = Flask(__name__)
 
@@ -10,12 +11,21 @@ def index():
         return render_template('index.html', yaml= yaml.safe_load(server_content))
 
 if __name__ == '__main__':
+
     parser=argparse.ArgumentParser()
 
     parser.add_argument("--port", help="Port to run on, default 5000", default=5000)
     parser.add_argument("--debug", help="enable debug logs, default False",default="False")
 
     args=parser.parse_args()
+
+    #Move services.yaml from persistant volume to app directory
+    os.rename("/config/services.yaml", "/app/services.yaml")
+    #move images from persistant volume to app directory
+   file_names = os.listdir("/config/images")
+   for file_name in file_names:
+        os.rename(f"/config/images/{file_name}", f"/app/static/{file_name}")
+
     try:
         port_val = int(args.port)
     except ValueError:
@@ -28,6 +38,8 @@ if __name__ == '__main__':
         print("Invalid debug value. Please provide a boolean value (True/False) for debug.")
         sys.exit(1)
     app.run(host='0.0.0.0', port=port_val, debug=debug_val)
+
+
 
 
 

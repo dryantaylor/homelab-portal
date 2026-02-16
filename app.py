@@ -22,8 +22,8 @@ if __name__ == '__main__':
     #Move services.yaml from persistant volume to app directory
     os.rename("/config/services.yaml", "/app/services.yaml")
     #move images from persistant volume to app directory
-   file_names = os.listdir("/config/images")
-   for file_name in file_names:
+    file_names = os.listdir("/config/images")
+    for file_name in file_names:
         os.rename(f"/config/images/{file_name}", f"/app/static/{file_name}")
 
     try:
@@ -38,6 +38,7 @@ if __name__ == '__main__':
         print("Invalid debug value. Please provide a boolean value (True/False) for debug.")
         sys.exit(1)
     app.run(host='0.0.0.0', port=port_val, debug=debug_val)
+
 
 
 

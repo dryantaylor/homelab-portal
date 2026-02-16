@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import yaml
 import argparse, sys
 import os
+import shutil
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     #move images from persistant volume to app directory
     file_names = os.listdir("/config/images")
     for file_name in file_names:
-        os.rename(f"/config/images/{file_name}", f"/app/static/{file_name}")
+        shutil.move(f"/config/images/{file_name}", f"/app/static/{file_name}")
 
     try:
         port_val = int(args.port)
@@ -38,6 +39,7 @@ if __name__ == '__main__':
         print("Invalid debug value. Please provide a boolean value (True/False) for debug.")
         sys.exit(1)
     app.run(host='0.0.0.0', port=port_val, debug=debug_val)
+
 
 
 
